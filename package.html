@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>مواقيت الصلاة</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <div class="header">
+      <div class="app-title">
+        <h1><i class="fas fa-mosque"></i> مواقيت الصلاة <i class="fas fa-clock"></i></h1>
+        <div id="currentDateTime" class="current-datetime"></div>
+      </div>
+      
+      <div class="language-switcher">
+        <button id="langAr" class="lang-btn active">العربية</button>
+        <button id="langEn" class="lang-btn">English</button>
+      </div>
+    </div>
+    
+    <div id="hijriDate" class="hijri-date"></div>
+
+    <div class="controls-container">
+      <div class="mode-selector">
+        <label for="modeSelect"><i class="fas fa-cog"></i> اختر الوضع:</label>
+        <select id="modeSelect">
+          <option value="auto">تلقائي</option>
+          <option value="manual">يدوي</option>
+        </select>
+      </div>
+
+      <div id="offlineNotice" class="offline-notice" style="display: none;">
+        <i class="fas fa-wifi-slash"></i> أنت تعمل في وضع عدم الاتصال، يتم استخدام البيانات المحلية
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="method-selector">
+        <label><i class="fas fa-calculator"></i> طريقة الحساب:</label>
+        <select id="calculationMethod">
+          <option value="0">رابطة العالم الإسلامي</option>
+          <option value="1">الهيئة المصرية العامة للمساحة</option>
+          <option value="2">الجامعة الإسلامية في كراتشي</option>
+          <option value="3">مجلس الإفتاء الأوروبي</option>
+          <option value="4">مجلس الفقه بأمريكا الشمالية</option>
+        </select>
+      </div>
+
+      <div id="manualControls" style="display: none;">
+        <div class="method-selector">
+          <label><i class="fas fa-globe-asia"></i> اختر الدولة:</label>
+          <select id="countrySelect">
+            <option value="">-- اختر الدولة --</option>
+          </select>
+        </div>
+
+        <div class="method-selector">
+          <label><i class="fas fa-city"></i> اختر المدينة:</label>
+          <select id="citySelect">
+            <option value="">-- اختر المدينة --</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="alarm-settings">
+        <h3><i class="fas fa-bell"></i> إعدادات التنبيه</h3>
+        <div class="alarm-controls">
+          <label for="alarmToggle">تفعيل التنبيه:</label>
+          <input type="checkbox" id="alarmToggle">
+          <label for="alarmMinutes">دقائق قبل الصلاة:</label>
+          <input type="number" id="alarmMinutes" min="1" max="60" value="15">
+        </div>
+      </div>
+      
+      <div class="next-prayer-info">
+        <h3 id="nextPrayerTitle">الصلاة التالية: <span id="nextPrayerName">--</span></h3>
+        <div class="time-remaining">
+          <i class="fas fa-hourglass-half"></i>
+          <span id="timeRemaining">--:--:--</span>
+        </div>
+      </div>
+
+      <div id="prayerTimes" class="prayer-times"></div>
+      <div id="loading" class="loading">
+        <i class="fas fa-spinner fa-spin"></i> جاري تحميل البيانات...
+      </div>
+      <div id="error" class="error"></div>
+      
+      <div class="prayer-info">
+        <h3><i class="fas fa-info-circle"></i> معلومات عن الصلاة</h3>
+        <div id="prayerDetails" class="prayer-details">
+          <p>يتم عرض معلومات مفصلة عن كل صلاة هنا عند النقر عليها</p>
+        </div>
+      </div>
+    </div>
+    
+    <footer>
+      <p>تم التطوير بـ <i class="fas fa-heart"></i> لخدمة المسلمين حول العالم</p>
+      <p id="appVersion">الإصدار 2.0</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
