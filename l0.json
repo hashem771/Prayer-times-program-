@@ -1,10 +1,4 @@
 {
-    "sqlite_sequence": [
-        {
-            "name": "zones",
-            "seq": 0
-        }
-    ],
     "locations": [
         {
             "ar_country": "الأردن",
@@ -31259,6 +31253,5 @@
             "calc_method": 3,
             "heights": 0
         }
-    ],
-    "zones": []
+    ]
 }

@@ -8,16 +8,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <div class="app-container">
-    <div class="header">
+  <main class="app-container">
+    <header class="header">
       <div class="app-title">
         <h1><i class="fas fa-mosque"></i> مواقيت الصلاة <i class="fas fa-clock"></i></h1>
         <div id="currentDateTime" class="current-datetime"></div>
       </div>
       
       <div class="language-switcher">
-        <button id="langAr" class="lang-btn active">العربية</button>
-        <button id="langEn" class="lang-btn">English</button>
+        <button id="langAr" class="lang-btn active" aria-pressed="true">العربية</button>
+        <button id="langEn" class="lang-btn" aria-pressed="false">English</button>
       </div>
     </div>
     
@@ -26,21 +26,21 @@
     <div class="controls-container">
       <div class="mode-selector">
         <label for="modeSelect"><i class="fas fa-cog"></i> اختر الوضع:</label>
-        <select id="modeSelect">
+        <select id="modeSelect" aria-label="Choose display mode">
           <option value="auto">تلقائي</option>
           <option value="manual">يدوي</option>
         </select>
       </div>
 
-      <div id="offlineNotice" class="offline-notice" style="display: none;">
+      <div id="offlineNotice" class="offline-notice" style="display: none;" role="status" aria-live="assertive">
         <i class="fas fa-wifi-slash"></i> أنت تعمل في وضع عدم الاتصال، يتم استخدام البيانات المحلية
       </div>
     </div>
 
     <div class="container">
       <div class="method-selector">
-        <label><i class="fas fa-calculator"></i> طريقة الحساب:</label>
-        <select id="calculationMethod">
+        <label for="calculationMethod" class="label-calc-method"><i class="fas fa-calculator"></i> طريقة الحساب:</label>
+        <select id="calculationMethod" aria-label="Calculation Method">
           <option value="0">رابطة العالم الإسلامي</option>
           <option value="1">الهيئة المصرية العامة للمساحة</option>
           <option value="2">الجامعة الإسلامية في كراتشي</option>
@@ -51,21 +51,21 @@
 
       <div id="manualControls" style="display: none;">
         <div class="method-selector">
-          <label><i class="fas fa-globe-asia"></i> اختر الدولة:</label>
-          <select id="countrySelect">
+          <label for="countrySelect" class="label-country"><i class="fas fa-globe-asia"></i> اختر الدولة:</label>
+          <select id="countrySelect" aria-label="Select Country">
             <option value="">-- اختر الدولة --</option>
           </select>
         </div>
 
         <div class="method-selector">
-          <label><i class="fas fa-city"></i> اختر المدينة:</label>
-          <select id="citySelect">
+          <label for="citySelect" class="label-city"><i class="fas fa-city"></i> اختر المدينة:</label>
+          <select id="citySelect" aria-label="Select City">
             <option value="">-- اختر المدينة --</option>
           </select>
         </div>
       </div>
       
-      <div class="alarm-settings">
+      <div class="alarm-settings info-panel">
         <h3><i class="fas fa-bell"></i> إعدادات التنبيه</h3>
         <div class="alarm-controls">
           <label for="alarmToggle">تفعيل التنبيه:</label>
@@ -75,7 +75,7 @@
         </div>
       </div>
       
-      <div class="next-prayer-info">
+      <div class="next-prayer-info info-panel">
         <h3 id="nextPrayerTitle">الصلاة التالية: <span id="nextPrayerName">--</span></h3>
         <div class="time-remaining">
           <i class="fas fa-hourglass-half"></i>
@@ -84,14 +84,14 @@
       </div>
 
       <div id="prayerTimes" class="prayer-times"></div>
-      <div id="loading" class="loading">
+      <div id="loading" class="loading" role="status">
         <i class="fas fa-spinner fa-spin"></i> جاري تحميل البيانات...
       </div>
-      <div id="error" class="error"></div>
+      <div id="error" class="error" role="status" aria-live="assertive"></div>
       
-      <div class="prayer-info">
+      <div class="prayer-info info-panel">
         <h3><i class="fas fa-info-circle"></i> معلومات عن الصلاة</h3>
-        <div id="prayerDetails" class="prayer-details">
+        <div id="prayerDetails" class="prayer-details" aria-live="polite">
           <p>يتم عرض معلومات مفصلة عن كل صلاة هنا عند النقر عليها</p>
         </div>
       </div>
@@ -101,7 +101,7 @@
       <p>تم التطوير بـ <i class="fas fa-heart"></i> لخدمة المسلمين حول العالم</p>
       <p id="appVersion">الإصدار 2.0</p>
     </footer>
-  </div>
+  </main>
 
   <script src="script.js"></script>
 </body>

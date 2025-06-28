@@ -1,14 +1,20 @@
+/* ==========================================================================
+   1. Root / Variables
+   ========================================================================== */
 :root {
   --primary-color: #1a5e63;
   --secondary-color: #28a198;
   --accent-color: #f39c12;
-  --light-bg: #f5f9fa;
+  /* --light-bg: #f5f9fa; -- Unused */
   --dark-text: #2c3e50;
   --prayer-card-bg: #ffffff;
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   --transition: all 0.3s ease;
 }
 
+/* ==========================================================================
+   2. Global Reset & Body Styles
+   ========================================================================== */
 * {
   margin: 0;
   padding: 0;
@@ -24,6 +30,11 @@ body {
   direction: rtl;
 }
 
+/* ==========================================================================
+   3. Layout Styles
+   ========================================================================== */
+
+/* App Container (was main.app-container in HTML) */
 .app-container {
   max-width: 1000px;
   margin: 0 auto;
@@ -33,6 +44,7 @@ body {
   overflow: hidden;
 }
 
+/* Header (was header.header in HTML) */
 .header {
   background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   color: white;
@@ -61,6 +73,40 @@ body {
   font-weight: 500;
 }
 
+.hijri-date {
+  background: #e8f4f4;
+  text-align: center;
+  padding: 10px;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+/* Controls & Main Content Area */
+.controls-container {
+  padding: 15px 20px;
+  background: #f0f8f8;
+}
+
+.container { /* This holds main content below header/controls */
+  padding: 20px;
+}
+
+/* Footer */
+footer {
+  background: var(--primary-color);
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9rem;
+  margin-top: 20px;
+}
+
+/* ==========================================================================
+   4. Component Styles
+   ========================================================================== */
+
+/* Language Switcher */
 .language-switcher {
   display: flex;
   gap: 10px;
@@ -86,25 +132,9 @@ body {
   background: rgba(255, 255, 255, 0.3);
 }
 
-.hijri-date {
-  background: #e8f4f4;
-  text-align: center;
-  padding: 10px;
-  font-size: 1.1rem;
-  color: var(--primary-color);
-  font-weight: bold;
-}
-
-.controls-container {
-  padding: 15px 20px;
-  background: #f0f8f8;
-}
-
-.container {
-  padding: 20px;
-}
-
-.mode-selector, .method-selector {
+/* Selectors (Mode, Method, Country, City) */
+.mode-selector,
+.method-selector {
   margin: 15px 0;
   padding: 15px;
   background-color: #f5fbfb;
@@ -112,7 +142,7 @@ body {
   box-shadow: var(--shadow);
 }
 
-label {
+label { /* General label styles for selectors */
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
@@ -140,6 +170,7 @@ select:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Prayer Cards */
 .prayer-times {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -159,6 +190,11 @@ select:hover {
   overflow: hidden;
   border-top: 4px solid var(--secondary-color);
   cursor: pointer;
+}
+
+.prayer-card:hover:not(.active) {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 .prayer-card.active {
@@ -194,6 +230,101 @@ select:hover {
   min-width: 120px;
   color: var(--primary-color);
 }
+
+/* Common Panel Styling for Next Prayer, Alarm, Prayer Info */
+.info-panel {
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+  margin: 25px 0; /* Default margin, can be overridden */
+}
+
+.info-panel h3 {
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 0; /* Common override for h3 default margin */
+}
+
+/* Next Prayer Info Panel */
+.next-prayer-info {
+  /* Extends .info-panel */
+  background: linear-gradient(135deg, #e8f6f3, #d0ece7);
+  text-align: center;
+  /* Uses padding, border-radius, box-shadow, margin from .info-panel */
+}
+
+.next-prayer-info h3 {
+  /* Extends .info-panel h3 */
+  font-size: 1.4rem;
+  /* Other styles from .info-panel h3 */
+}
+
+.time-remaining {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* Alarm Settings Panel */
+.alarm-settings {
+  /* Extends .info-panel */
+  background: #f8f9f9;
+  /* Uses padding, border-radius, box-shadow, margin from .info-panel */
+}
+
+/* .alarm-settings h3 uses styles from .info-panel h3 by default */
+
+.alarm-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.alarm-controls label { /* Specific label style within alarm controls */
+  margin-bottom: 0;
+}
+
+.alarm-controls input[type="checkbox"] {
+  transform: scale(1.5);
+  margin: 0 10px;
+}
+
+.alarm-controls input[type="number"] {
+  padding: 10px;
+  border: 2px solid var(--secondary-color);
+  border-radius: 10px;
+  width: 70px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+/* Prayer Information Panel */
+.prayer-info {
+  /* Extends .info-panel */
+  background: #f8f9f9;
+  margin-top: 30px; /* Override default margin-top from .info-panel */
+  /* Uses padding, border-radius, box-shadow from .info-panel */
+}
+
+/* .prayer-info h3 uses styles from .info-panel h3 by default */
+
+.prayer-details p {
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   5. Utility & Status Styles
+   ========================================================================== */
 
 .loading {
   text-align: center;
@@ -233,105 +364,28 @@ select:hover {
   gap: 10px;
 }
 
-.next-prayer-info {
-  background: linear-gradient(135deg, #e8f6f3, #d0ece7);
-  padding: 20px;
-  border-radius: 15px;
-  margin: 25px 0;
-  text-align: center;
-  box-shadow: var(--shadow);
+/* ==========================================================================
+   6. Accessibility Styles
+   ========================================================================== */
+/* General focus styles for accessibility */
+button:focus,
+select:focus,
+input[type="checkbox"]:focus,
+input[type="number"]:focus,
+[tabindex="0"]:focus {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(243, 156, 18, 0.3); /* Optional: adds a softer glow */
 }
 
-.next-prayer-info h3 {
-  font-size: 1.4rem;
-  color: var(--primary-color);
-  margin-bottom: 15px;
+/* More specific focus for certain elements if needed, or remove browser default if custom is better */
+select:focus {
+    border-color: var(--accent-color); /* Example: make border more prominent on focus */
 }
 
-.time-remaining {
-  font-size: 2.2rem;
-  font-weight: bold;
-  color: var(--accent-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-}
-
-.alarm-settings {
-  background: #f8f9f9;
-  padding: 20px;
-  border-radius: 15px;
-  margin: 25px 0;
-  box-shadow: var(--shadow);
-}
-
-.alarm-settings h3 {
-  margin-top: 0;
-  color: var(--primary-color);
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.alarm-controls {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
-
-.alarm-controls label {
-  margin-bottom: 0;
-}
-
-.alarm-controls input[type="checkbox"] {
-  transform: scale(1.5);
-  margin: 0 10px;
-}
-
-.alarm-controls input[type="number"] {
-  padding: 10px;
-  border: 2px solid var(--secondary-color);
-  border-radius: 10px;
-  width: 70px;
-  text-align: center;
-  font-size: 1rem;
-}
-
-.prayer-info {
-  background: #f8f9f9;
-  padding: 20px;
-  border-radius: 15px;
-  margin-top: 30px;
-  box-shadow: var(--shadow);
-}
-
-.prayer-info h3 {
-  color: var(--primary-color);
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.prayer-details p {
-  line-height: 1.8;
-  font-size: 1.1rem;
-}
-
-footer {
-  background: var(--primary-color);
-  color: white;
-  text-align: center;
-  padding: 15px;
-  font-size: 0.9rem;
-  margin-top: 20px;
-}
-
-/* إضافات للاستجابة على الأجهزة الصغيرة */
+/* ==========================================================================
+   7. Media Queries (Responsive Design)
+   ========================================================================== */
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
